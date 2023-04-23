@@ -45,6 +45,7 @@ jobs:
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v2
+       #disable-default-queries: true
       with:
         languages: ${{ matrix.language }}
         queries: ./comp3310-queries/A.1.11.ql
