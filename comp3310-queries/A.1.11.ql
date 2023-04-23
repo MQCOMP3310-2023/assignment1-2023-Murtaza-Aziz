@@ -1,3 +1,12 @@
+/**
+ * @name Comp3310 individual query
+ * @kind problem
+ * @problem.severity warning
+ * @id java/example/empty-block
+ */
+
+
+
 import java
 
 from MethodAccess ma, MethodAccess getMessage
