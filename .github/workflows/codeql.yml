@@ -47,7 +47,7 @@ jobs:
       uses: github/codeql-action/init@v2
       with:
         languages: ${{ matrix.language }}
-        queries: security-extended,security-and-quality
+        queries: security-extended,security-and-quality, ./comp3310-queries/A.1.9.ql,./comp3310-queries/A.1.10.ql,./comp3310-queries/A.1.11.ql
         # If you wish to specify custom queries, you can do so here or in a config file.
         # By default, queries listed here will override any specified in a config file.
         # Prefix the list here with "+" to use these queries and those in the config file.
