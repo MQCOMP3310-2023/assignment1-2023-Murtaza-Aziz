@@ -1,16 +1,19 @@
-/**
- * @name Comp3310 workshop 6 print loop
- * @kind problem
- * @problem.severity warning
- * @id java/example/print-loop
- */
-
 import java
 
-from LoopStmt loop,  MethodAccess call, Method method
+from MethodAccess ma, MethodAccess getMessage
 where
-  loop.getAChild*() = call.getEnclosingStmt() and  //works now
-  call.getMethod() = method and
-  method.hasName("println") and
-  method.getDeclaringType().hasQualifiedName("java.io",  "PrintStream")
-select call, "This prints to console in a loop."
+  ma.getMethod().hasName("printStackTrace") and
+  ma.getMethod().getDeclaringType().hasQualifiedName("java.lang", "Throwable") and
+  ma.getNumArgument() = 0 
+  or
+  ma.getMethod().hasName("println") and
+  ma.getMethod().getDeclaringType().hasQualifiedName("java.io", "PrintStream") and
+  ma.getNumArgument() > 0 and
+  getMessage.getMethod().hasName("getMessage") and
+  getMessage.getMethod().getDeclaringType().hasQualifiedName("java.lang", "Throwable") and
+    getMessage.getNumArgument() = 0 and
+    ma.getArgument(0) = getMessage
+
+select ma, "printStackTrace() called on Throwable with no arguments"
+
+
